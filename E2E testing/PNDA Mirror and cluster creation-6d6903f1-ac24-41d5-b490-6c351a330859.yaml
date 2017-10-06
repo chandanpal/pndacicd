@@ -1,0 +1,15 @@
+- description: Creates new instance,gets 'pnda' build repo, build and create mirror on an Apache HTTP server,ready for use
+  executionEnabled: true
+  group: E2E testing
+  id: 6d6903f1-ac24-41d5-b490-6c351a330859
+  loglevel: INFO
+  name: PNDA Mirror and cluster creation
+  nodeFilterEditable: false
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: ls
+    keepgoing: false
+    strategy: node-first
+  uuid: 6d6903f1-ac24-41d5-b490-6c351a330859
+
