@@ -1,0 +1,63 @@
+- description: Create PNDA cluster using CFN on AWS use this job to create arbitrary PNDA cluters
+  executionEnabled: true
+  group: Cluster Creation
+  id: 257996a0-728a-4f85-8f53-5a6a5ff89a28
+  loglevel: INFO
+  name: Create PNDA cluster using CFN on AWS
+  nodeFilterEditable: false
+  options:
+  - description: Branch of the pnda aws template repo
+    name: aws_branch
+  - description: Repo of the pnda aws template
+    name: aws_repo
+    value: https://github.com/pndaproject/pnda-aws-templates.git
+  - description: Name of the pnda cluster
+    name: cluster_name
+    value: pnda
+  - description: Select flavor of pnda pico or standared
+    enforced: true
+    name: flavor
+    value: pico
+    values:
+    - pico
+    - standard
+  - name: horizontal_opts
+    value: -n 1 -k 1
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - args: ${option.aws_branch}
+      script: |-
+        #!/bin/bash
+        #${RD_OPTION_AWS_BRANCH:=mydefault}
+
+        #AWS_BRANCH="@option.aws_branch@"
+        #AWS_BRANCH=mydefault
+
+        message=@option.aws_branch@
+
+        echo test $message
+
+        message=test
+        echo test1 $message
+        echo test2 @option.aws_branch@
+
+        #if [ "$message" == "" ] ; then
+        #   message=mydefault
+        #fi
+        #echo test
+        #echo $message
+        #echo $option.aws_branch
+        #echo ${option.aws_branch}
+        #@option.aws_branch@=
+        #echo ${RD_OPTION_AWS_BRANCH}
+        #echo $RD_OPTION_AWS_BRANCH
+        #message=tst
+    - args: $message
+      script: |-
+        echo chandan
+        echo $1
+    keepgoing: false
+    strategy: node-first
+  uuid: 257996a0-728a-4f85-8f53-5a6a5ff89a28
+
